@@ -1,3 +1,7 @@
+; Lab 2 Processor Exceptions
+;
+; Demonstrate processor exception handling.
+
         NAME    main
 
         PUBLIC __iar_program_start
@@ -49,10 +53,10 @@ HardFault_Handler
         B       .               ; Handle this separately
 
 ; The main loop.
-main    NOP                     ; Just for ease of editing.
+main
         BL      GPIOF_Enable    ; Enable GPIOF first
         BL      CauseMemFault   ; Note the SP register
-        B       main
+        B       .               ; Loop forever
 
 ; GPIO ports are run mode clock gated. They must be turned on before accessing.
 ; This attempt to write a value will cause a processor hard fault.

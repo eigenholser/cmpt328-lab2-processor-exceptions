@@ -50,6 +50,7 @@ HardFault_Handler
 
 ; The main loop.
 main    NOP                     ; Just for ease of editing.
+        BL      GPIOF_Enable    ; Enable GPIOF first
         BL      CauseMemFault   ; Note the SP register
         B       main
 
@@ -62,7 +63,14 @@ CauseMemFault
         NOP                     ; Pause, wait for it...!
         BX      LR              ; Return to caller
 
+GPIOF_Enable
+        LDR     R0, SYSCTL_RCGCGPIO_R   ; Clock gating register
+        MOVS    R1, #0x00U              ; Replace this with the correct value
+        STR     R1, [R0]                ; In memory view, goto 0x40025000
+        BX      LR                      ; before execute
+
         DATA
+SYSCTL_RCGCGPIO_R         DC32    0x400FE608U     ; Run mode clock gating
 GPIO_PORTF_DATA_BITS_R    DC32    0x400253FCU     ; GPIOF data all bits
 
         END

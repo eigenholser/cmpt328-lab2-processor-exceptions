@@ -41,7 +41,7 @@ MultiCoreRunAll=1
 LMIFTDIserialNo=0E20AE4F
 LMIFTDIfoundProbes=
 [DebugChecksum]
-Checksum=-382224339
+Checksum=-966664461
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -51,6 +51,12 @@ LMI_ResetMode=0x00000001
 ShowArgs=0
 [Disassembly]
 MixedMode=1
+[Disassemble mode]
+mode=0
+[Breakpoints]
+Bp0=_ "STD_CODE" "0x20003024" 0 0 0 0 "" 0 ""
+Bp1=_ "STD_CODE" "{$PROJ_DIR$\startup.s}.166.1" 0 0 0 0 "" 0 ""
+Count=2
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -58,18 +64,12 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
+[Aliases]
+Count=0
+SuppressDialog=0
 [DriverProfiling]
 Enabled=0
 Mode=0
 Graph=0
 Symbiont=0
 Exclusions=
-[Disassemble mode]
-mode=0
-[Breakpoints]
-Bp0=_ "STD_CODE" "0x20003024" 0 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\startup.s}.166.1" 0 0 0 0 "" 0 ""
-Count=2
-[Aliases]
-Count=0
-SuppressDialog=0

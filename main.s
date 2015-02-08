@@ -35,7 +35,6 @@ __iar_program_start
 
 ; Processor Exception Handlers. Attach them all to this loop.
 NMI_Handler
-HardFault_Handler
 MemManage_Handler
 BusFault_Handler
 UsageFault_Handler
@@ -45,6 +44,9 @@ PendSV_Handler
 SysTick_Handler
         B       .               ; Loop here forever.
                                 ; Now look at the stack!
+
+HardFault_Handler
+        B       .               ; Handle this separately
 
 ; The main loop.
 main    NOP                     ; Just for ease of editing.

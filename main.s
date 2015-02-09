@@ -6,7 +6,9 @@
 
         PUBLIC __iar_program_start
 
-Stack   EQU    0x20008000U              ; SP
+Stack   EQU    0x20008000                       ; SP
+SYSCTL_RCGCGPIO_R         EQU    0x400FE608     ; Run mode clock gating
+GPIO_PORTF_DATA_BITS_R    EQU    0x400253FC     ; GPIOF data all bits
 
 ; Vector Table
 ; Limited to processor exception handlers. Do you recognize the first two
@@ -62,19 +64,15 @@ main
 ; This attempt to write a value will cause a processor hard fault.
 CauseMemFault
         LDR     R0, GPIO_PORTF_DATA_BITS_R      ; GPIOF data all bits
-        MOVS    R1, #0x02U      ; LED red
+        MOVS    R1, #0x02       ; LED red
         STR     R1, [R0]        ; BOOM!
         NOP                     ; Pause, wait for it...!
         BX      LR              ; Return to caller
 
 GPIOF_Enable
         LDR     R0, SYSCTL_RCGCGPIO_R   ; Clock gating register
-        MOVS    R1, #0x00U              ; Replace this with the correct value
+        MOVS    R1, #0x00               ; Replace this with the correct value
         STR     R1, [R0]                ; In memory view, goto 0x40025000
         BX      LR                      ; before execute
-
-        DATA
-SYSCTL_RCGCGPIO_R         DC32    0x400FE608U     ; Run mode clock gating
-GPIO_PORTF_DATA_BITS_R    DC32    0x400253FCU     ; GPIOF data all bits
 
         END

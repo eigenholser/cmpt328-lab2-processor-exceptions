@@ -67,7 +67,7 @@ main
 ; Output: None
 ; Modifies: R0, R1
 CauseMemFault
-        LDR     R0, GPIO_PORTF_DATA_BITS_R      ; GPIOF data all bits
+        LDR     R0, =GPIO_PORTF_DATA_BITS_R      ; GPIOF data all bits
         MOVS    R1, #0x02       ; LED red
         STR     R1, [R0]        ; BOOM!
         NOP                     ; Pause, wait for it...!
@@ -79,7 +79,7 @@ CauseMemFault
 ; Output: None
 ; Modifies R0, R1
 GPIOF_Enable
-        LDR     R0, SYSCTL_RCGCGPIO_R   ; Clock gating register
+        LDR     R0, =SYSCTL_RCGCGPIO_R   ; Clock gating register
         MOVS    R1, #0x00               ; Replace this with the correct value
         STR     R1, [R0]                ; In memory view, goto 0x40025000
         NOP                             ; before execute

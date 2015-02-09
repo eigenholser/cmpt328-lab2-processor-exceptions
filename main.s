@@ -6,9 +6,9 @@
 
         PUBLIC __iar_program_start
 
-Stack   EQU    0x20008000                       ; SP
-SYSCTL_RCGCGPIO_R         EQU    0x400FE608     ; Run mode clock gating
-GPIO_PORTF_DATA_BITS_R    EQU    0x400253FC     ; GPIOF data all bits
+Stack                   EQU    0x20008000   ; SP
+SYSCTL_RCGCGPIO_R       EQU    0x400FE608   ; Run mode clock gating
+GPIO_PORTF_DATA_BITS_R  EQU    0x400253FC   ; GPIOF data all bits
 
 ; Vector Table
 ; Limited to processor exception handlers. Do you recognize the first two

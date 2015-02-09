@@ -60,8 +60,12 @@ main
         BL      CauseMemFault   ; Note the SP register
         B       .               ; Loop forever
 
+; ---------->% CauseMemFault >%----------
 ; GPIO ports are run mode clock gated. They must be turned on before accessing.
 ; This attempt to write a value will cause a processor hard fault.
+; Input: None
+; Output: None
+; Modifies: R0, R1
 CauseMemFault
         LDR     R0, GPIO_PORTF_DATA_BITS_R      ; GPIOF data all bits
         MOVS    R1, #0x02       ; LED red
@@ -69,10 +73,17 @@ CauseMemFault
         NOP                     ; Pause, wait for it...!
         BX      LR              ; Return to caller
 
+; ---------->% GPIOF_Enable >%----------
+; Run mode clock gating. Enable GPIOF.
+; Input: None
+; Output: None
+; Modifies R0, R1
 GPIOF_Enable
         LDR     R0, SYSCTL_RCGCGPIO_R   ; Clock gating register
         MOVS    R1, #0x00               ; Replace this with the correct value
         STR     R1, [R0]                ; In memory view, goto 0x40025000
-        BX      LR                      ; before execute
+        NOP                             ; before execute
+        NOP                             ; Make time for GPIOF clock.
+        BX      LR                      ; Return
 
         END

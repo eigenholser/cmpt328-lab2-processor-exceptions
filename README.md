@@ -1,7 +1,14 @@
-Processor Exceptions
-====================
+Lab 2 - Processor Exceptions
+============================
 
-Demonstrates processor exceptions in the ARM Cortex M4F.
+This lab project was developed for the Westminster College Spring 2015 CMPT328
+Computer Architecture course.
+
+This was developed using the IAR Systems Embedded Workbench. Some slight
+modifications will be necessary for Keil uVision or Code Composer.
+
+Demonstrates processor exceptions in the ARM Cortex M4F as implemented on
+the TI Tiva C Series Launchpad Evaluation Kit.
 
 The first 16 entries in the vector table are populated. Create stub exception
 handlers for the processor exceptions we don't care about. This is just so
@@ -12,3 +19,4 @@ peripheral that has not yet been enabled.
 
 The lab exercise offers some variations on this code and so there is a bit
 extra in here.
+
